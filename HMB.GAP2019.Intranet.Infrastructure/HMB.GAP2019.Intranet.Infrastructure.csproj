@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>HMB.GAP2019.Intranet.Infrastructure</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HMB.GAP2019.Intranet.Core\HMB.GAP2019.Intranet.Core.csproj" />
+  </ItemGroup>
+
+</Project>

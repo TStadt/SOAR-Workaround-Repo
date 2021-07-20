@@ -1,0 +1,236 @@
+@page
+@{
+    ViewData["Title"] = "Timesheet";
+}
+
+<h3 align="center">
+    <button class="btn btn-default">
+        &lt;
+    </button>
+    6/11/2017 to 6/17/2017
+    <button class="btn btn-default">
+        &gt;
+    </button>
+</h3>
+
+<div class="container-fluid">
+    <table class="table table-striped table-condensed table-responsive">
+        <thead>
+            <tr>
+                <th class="text-center col-md-2">
+                    Task
+                </th>
+                <th class="text-center">
+                    Mo 6/12
+                </th>
+                <th class="text-center">
+                    Tu 6/13
+                </th>
+                <th class="text-center">
+                    We 6/14
+                </th>
+                <th class="text-center">
+                    Th 6/15
+                </th>
+                <th class="text-center">
+                    Fr 6/16
+                </th>
+                <th class="text-center">
+                    Sa 6/17
+                </th>
+                <th class="text-center">
+                    Su 6/18
+                </th>
+                <th class="text-center">
+                    Total
+                </th>
+                <th class="text-center col-md-2">
+                    Note
+                </th>
+                <th class="text-center">&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <tr>
+                <td>
+                    Design
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="3" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="3" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="2" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    8
+                </td>
+                <td><input type="text" class="form-control" /></td>
+                <td>
+                    <a ahref="#" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Develop
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="2" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="4" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="5" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="7" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="7" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    25
+                </td>
+                <td><input type="text" class="form-control" /></td>
+                <td>
+                    <a ahref="#" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Other
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="3" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="1" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="1" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="1" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="1" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" value="0" class="form-control" />
+                </td>
+                <td>
+                    7
+                </td>
+                <td><input type="text" class="form-control" /></td>
+                <td>
+                    <a ahref="#" class="btn btn-danger btn-xs">Delete</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <select class="form-control">
+                        <option>
+                            Select Task
+                        </option>
+                        <option>
+                            Design
+                        </option>
+                        <option>
+                            Develop
+                        </option>
+                        <option>
+                            Other
+                        </option>
+                    </select>
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    <input type="number" class="form-control" />
+                </td>
+                <td>
+                    0
+                </td>
+                <td><input type="text" class="form-control" /></td>
+                <td>
+                    <a ahref="#" class="btn btn-success btn-xs">Add</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot class="text-center">
+            <tr>
+                <td>
+                    Saved 10 minutes ago
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    8
+                </td>
+                <td>
+                    0
+                </td>
+                <td>
+                    40
+                </td>
+                <td colspan="2">
+                    <a ahref="#" class="btn btn-info">Save</a>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
