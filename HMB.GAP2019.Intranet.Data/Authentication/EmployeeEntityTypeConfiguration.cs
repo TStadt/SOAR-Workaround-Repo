@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HMB.GAP2019.Intranet.Data.Authentication
 {
-    internal class EmployeeEntityTypeConfiguration : IEntityTypeConfiguration<Employee>
+    public class EmployeeEntityTypeConfiguration : IEntityTypeConfiguration<Employee>
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
