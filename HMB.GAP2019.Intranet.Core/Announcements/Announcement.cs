@@ -5,6 +5,7 @@ namespace HMB.GAP2019.Intranet.Core.Announcements
 {
     public class Announcement
     {
+        [Key]
         public int Id { get; set; }
 
         public DateTime StartDate { get; set; }

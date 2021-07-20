@@ -14,7 +14,7 @@ namespace HMB.GAP2019.Intranet.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -22,18 +22,24 @@ namespace HMB.GAP2019.Intranet.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:IdentityIncrement", 1)
+                        .HasAnnotation("SqlServer:IdentitySeed", 1)
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .IsRequired()
+                        .HasColumnType("nvarchar(300)")
                         .HasMaxLength(300);
 
                     b.Property<string>("FirstName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.Property<string>("LastName")
                         .IsRequired()
+                        .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
@@ -44,16 +50,30 @@ namespace HMB.GAP2019.Intranet.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Email = "admin@istrator.com",
-                            FirstName = "Admin",
-                            LastName = "Istrator"
+                            Email = "alice.jones.admin@hmbnet.com",
+                            FirstName = "Alice",
+                            LastName = "Jones"
                         },
                         new
                         {
                             Id = 2,
-                            Email = "john.smith.iii@hmbnet.com",
+                            Email = "john.smith.employee@hmbnet.com",
                             FirstName = "John",
                             LastName = "Smith"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Email = "pamela.rogers.pm@hmbnet.com",
+                            FirstName = "Pamela",
+                            LastName = "Rogers"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Email = "carter.cruz.hr@hmbnet.com",
+                            FirstName = "Carter",
+                            LastName = "Cruz"
                         });
                 });
 #pragma warning restore 612, 618
