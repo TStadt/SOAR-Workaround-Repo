@@ -5,7 +5,7 @@ using HMB.GAP2019.Intranet.Core.TimeEntry;
 
 namespace HMB.GAP2019.Intranet.Core.Tasks
 {
-    public class Task
+    public class TaskEntry
     {
         public int Id { get; set; }
 

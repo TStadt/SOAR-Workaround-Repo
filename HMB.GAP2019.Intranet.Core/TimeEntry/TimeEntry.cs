@@ -12,7 +12,7 @@ namespace HMB.GAP2019.Intranet.Core.TimeEntry
         public int Day { get; set; }
 
         [Required]
-        public Tasks.Task task { get; set; }
+        public Tasks.TaskEntry task { get; set; }
 
         [StringLength(1000)]
         public string Note { get; set; }
