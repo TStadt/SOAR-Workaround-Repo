@@ -3,50 +3,63 @@
     ViewData["Title"] = "Manage Announcements";
 }
 
-<article class="container-fluid">
-    <div class="row">
-        <div class="col">
-            <span class="h2">Announcements</span>
-            <span class="h2">
-                <a class="btn btn-success btn-xs" href="#" aria-label="add announcement">
-                    Add
-                </a>
-            </span>
-        </div>
+<style>
+    .add-button-color {
+        color: white;
+        background-color: forestgreen;
+    }
+    .delete-button-color {
+        color: white;
+        background-color: red;
+    }
+</style>
+
+@* hopefully this works *@
+
+<h2>Announcements</h2>
+
+<article>
+    <h1>Manage your annoucements here.</h1>
+    <button class="add-button-color"
+            formaction="#">Add</button>
+    <div>
+        <table class="table table-responsive table-condensed table-striped">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>High Priority</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @* Filler Object below. TODO: Fill with real data *@
+                <tr>
+                    <td><a href="#">Good Luck on your presentation!</a></td>
+                    <td>6/20/2018</td>
+                    <td>6/22/2018</td>
+                    <td>Yes</td>
+                    <td>
+                        <button class="delete-button-color"
+                                formaction="#">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a href="#">Agile Essentials!</a></td>
+                    <td>6/20/2018</td>
+                    <td>6/22/2018</td>
+                    <td>No</td>
+                    <td>
+                        <button class="delete-button-color"
+                                formaction="#">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="table table-responsive table-condensed table-striped">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>High Priority</th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><a href="#">Good Luck on your presentation!</a></td>
-                <td>6/20/2018</td>
-                <td>6/22/2018</td>
-                <td>Yes</td>
-                <td>
-                    <button class="btn btn-danger btn-xs" aria-label="remove announcement">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-            <tr>
-                <td><a href="#">Git Basics</a></td>
-                <td>6/11/2018</td>
-                <td>6/22/2018</td>
-                <td>No</td>
-                <td>
-                    <button class="btn btn-danger btn-xs" aria-label="remove announcement">
-                        Delete
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </article>
