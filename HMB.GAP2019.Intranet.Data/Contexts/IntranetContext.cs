@@ -18,6 +18,7 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Task> Tasks{ get; set; }
         public DbSet<TimeSheet> Timesheet { get; set; }
+        public DbSet<HMB.GAP2019.Intranet.Core.TimeEntry.TimeEntry> TimeEntry { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

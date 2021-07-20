@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HMB.GAP2019.Intranet.Data.Contexts
 {
-    public class TimeEntryEntityTypeConfiguration : IEntityTypeConfiguration<TimeEntry>
+    public class TimeEntryEntityTypeConfiguration : IEntityTypeConfiguration<Core.TimeEntry.TimeEntry>
     {
-        public void Configure(EntityTypeBuilder<TimeEntry> builder)
+        public void Configure(EntityTypeBuilder<Core.TimeEntry.TimeEntry> builder)
         {
             builder.HasKey(te => te.Id);
             builder.Property(te => te.Id).UseSqlServerIdentityColumn();
