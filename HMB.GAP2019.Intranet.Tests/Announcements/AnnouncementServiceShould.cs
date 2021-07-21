@@ -3,11 +3,15 @@ using HMB.GAP2019.Intranet.Core.Authentication;
 using HMB.GAP2019.Intranet.Core.ModelValidation;
 using Microsoft.Extensions.Internal;
 using Microsoft.Extensions.Logging;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
-using Xunit;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace HMB.GAP2019.Intranet.Tests.Announcements
 {
+    [TestClass]
     public class AnnouncementServiceShould
     {
         private readonly IAnnouncementRepository _mockAnnouncementRepository;
@@ -34,7 +38,7 @@ namespace HMB.GAP2019.Intranet.Tests.Announcements
             );
         }
 
-        [Fact]
+        [TestMethod]
         public void RequireALoggedInUserWhenCreatingAnAnnouncement()
         {
             // Arrange
@@ -46,10 +50,31 @@ namespace HMB.GAP2019.Intranet.Tests.Announcements
             var actual = _systemUnderTest.CreateAnnouncement(new Announcement());
 
             // Assert
-            Assert.False(actual);
+            Assert.IsFalse(actual);
             _mockAnnouncementRepository
                .DidNotReceive()
                .Add(Arg.Any<Announcement>());
+        }
+
+        [TestMethod]
+        public void GetFiveActiveAnnouncements()
+        {
+            // Arrange
+            List<Announcement> announcements = new List<Announcement>()
+            {
+                new Announcement{Id=1, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 1", Body="test 1"},
+                new Announcement{Id=2, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 2", Body="test 2"},
+                new Announcement{Id=3, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 3", Body="test 3"},
+                new Announcement{Id=4, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 4", Body="test 4"},
+                new Announcement{Id=5, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 5", Body="test 5"},
+                new Announcement{Id=6, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 6", Body="test 6"}
+            };
+            _mockAnnouncementRepository.GetAll().Returns(announcements.AsQueryable());
+            _clock.UtcNow.Returns(new DateTimeOffset(DateTime.Now));
+            // Act
+            var actual = _systemUnderTest.GetActiveAnnouncements();
+            // Assert
+            Assert.AreEqual(5, actual.Count());
         }
     }
 }
