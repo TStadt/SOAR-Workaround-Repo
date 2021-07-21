@@ -76,5 +76,41 @@ namespace HMB.GAP2019.Intranet.Tests.Announcements
             // Assert
             Assert.AreEqual(5, actual.Count());
         }
+
+
+        [TestMethod]
+        public void SortFiveActiveAnnouncementsByHighPriorityAndDate()
+        {
+            // Arrange
+            List<Announcement> announcements = new List<Announcement>()
+            {
+                new Announcement{Id=1, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=false, Title="test 1 hp false", Body="test 1 hp false"},
+                new Announcement{Id=2, StartDate=System.DateTime.Now.AddDays(-2), EndDate=System.DateTime.Now.AddDays(2), IsHighPriority=true, Title="test 2 hp true", Body="test 2 hp true"},
+                new Announcement{Id=3, StartDate=System.DateTime.Now.AddDays(-3), EndDate=System.DateTime.Now.AddDays(3), IsHighPriority=false, Title="test 3 hp false", Body="test 3 hp false"},
+                new Announcement{Id=4, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 1 hp true", Body="test 1 hp true"},
+                new Announcement{Id=5, StartDate=System.DateTime.Now.AddDays(-2), EndDate=System.DateTime.Now.AddDays(2), IsHighPriority=false, Title="test 2 hp false", Body="test 2 hp flase"},
+                new Announcement{Id=6, StartDate=System.DateTime.Now.AddDays(-3), EndDate=System.DateTime.Now.AddDays(3), IsHighPriority=true, Title="test 3 hp true", Body="test 3 true"}
+            };
+            List<Announcement> expected = new List<Announcement>()
+            {
+                new Announcement{Id=4, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=true, Title="test 1 hp true", Body="test 1 hp true"},
+                new Announcement{Id=2, StartDate=System.DateTime.Now.AddDays(-2), EndDate=System.DateTime.Now.AddDays(2), IsHighPriority=true, Title="test 2 hp true", Body="test 2 hp true"},
+                new Announcement{Id=6, StartDate=System.DateTime.Now.AddDays(-3), EndDate=System.DateTime.Now.AddDays(3), IsHighPriority=true, Title="test 3 hp true", Body="test 3 true"},
+                new Announcement{Id=1, StartDate=System.DateTime.Now.AddDays(-1), EndDate=System.DateTime.Now.AddDays(1), IsHighPriority=false, Title="test 1 hp false", Body="test 1 hp false"},
+                new Announcement{Id=5, StartDate=System.DateTime.Now.AddDays(-2), EndDate=System.DateTime.Now.AddDays(2), IsHighPriority=false, Title="test 2 hp false", Body="test 2 hp flase"}
+            };
+            _mockAnnouncementRepository.GetAll().Returns(announcements.AsQueryable());
+            _clock.UtcNow.Returns(new DateTimeOffset(DateTime.Now));
+
+            // Act
+            var actual = _systemUnderTest.GetActiveAnnouncements();
+
+            // Assert
+            for (int i = 0; i < 5; i++)
+            {
+                Assert.AreEqual(actual.ToArray()[i].Id, expected.ToArray()[i].Id);
+
+            }
+        }
     }
 }
