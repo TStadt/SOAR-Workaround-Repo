@@ -66,6 +66,15 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
                 placeholder.Add(entry.Task.Name, list.Select(l => l.ToString()));
 
             }
+            var totalHours = timeSheet.Entries.Sum(e => e.Monday + e.Tuesday + e.Wednesday + e.Thursday + e.Friday + e.Saturday + e.Sunday);
+            if (totalHours > 50)
+            {
+                placeholder.Add("Exceed Hours", new List<String> { "The total number of hours needs to be <= 50" });
+            }
+
+            var totalMonday = timeSheet.Entries.Sum(e => e.Monday);
+            
+
 
 
 
