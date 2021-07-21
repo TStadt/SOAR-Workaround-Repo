@@ -25,6 +25,27 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
             _validator = validationService;
             _repo = repo;
         }
+
+        public bool DeleteTimeSheet(DateTime dateInWeek)
+        {
+            var result = GetTimeSheet(dateInWeek);
+            if (result != null)
+            {
+                _repo.Delete(result.Id);
+                try
+                {
+                    _repo.Commit();
+                }
+                catch (Exception e)
+                {
+                    _logger.LogError("Error deleting changes: " + e);
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
         public TimeSheet GetTimeSheet(DateTime dateInWeek)
         {
             
@@ -43,7 +64,15 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
 
         public bool SubmitTimeSheet(TimeSheet timeSheet)
         {
-            _repo.Add(timeSheet);
+            var result = _repo.GetById(timeSheet.Id);
+            if (result == null)
+            {
+                _repo.Add(timeSheet);
+            }
+            else
+            {
+                _repo.Update(timeSheet);
+            }
             try {
                 _repo.Commit();
             }
@@ -71,13 +100,7 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
             {
                 placeholder.Add("Exceed Hours", new List<String> { "The total number of hours needs to be <= 50" });
             }
-
             var totalMonday = timeSheet.Entries.Sum(e => e.Monday);
-            
-
-
-
-
             return placeholder;
         }
     }

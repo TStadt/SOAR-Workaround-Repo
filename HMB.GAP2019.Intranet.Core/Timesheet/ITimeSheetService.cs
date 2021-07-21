@@ -12,6 +12,6 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
 
         TimeSheet GetTimeSheet(DateTime dateInWeek);
 
-        
+        bool DeleteTimeSheet(DateTime dateInWeek);
     }
 }

@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HMB.GAP2019.Intranet.Core.Timesheet;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,40 +10,67 @@ using System.Threading.Tasks;
 
 namespace HMB.GAP2019.Intranet.API.Timesheets
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
+    [Produces("application/json")]
+    
     public class TimeSheetController : ControllerBase
     {
-        // GET: api/<TimeSheetController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly ITimeSheetService _timeSheetService;
+        private readonly ITimeSheetRepository _repo;
+
+        public TimeSheetController(ITimeSheetRepository repository, ITimeSheetService timeSheetService)
         {
-            return new string[] { "value1", "value2" };
+            _timeSheetService = timeSheetService;
+            _repo = repository;
         }
+
+        [HttpPost("/submit")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        public IActionResult Create([FromBody] TimeSheet timeSheet)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var validate = _timeSheetService.ValidateTimeSheet(timeSheet);
+            if (validate.Any(l => l.Value.Count() > 0))
+            {
+                return BadRequest(validate);
+            }
+            var result = _timeSheetService.SubmitTimeSheet(timeSheet);
+            if (!result)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
 
         // GET api/<TimeSheetController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpGet("/get")]
+        public IActionResult Get([FromQuery] DateTime startDate) 
         {
-            return "value";
-        }
-
-        // POST api/<TimeSheetController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<TimeSheetController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
+            TimeSheet result = _timeSheetService.GetTimeSheet(startDate);
+            if (result == null)
+            {
+                return NotFound();
+            }
+            return Ok(result);
         }
 
         // DELETE api/<TimeSheetController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("/delete")]
+        public IActionResult Delete([FromQuery] DateTime startDate)
         {
+            var result = _timeSheetService.DeleteTimeSheet(startDate);
+            if (!result)
+            {
+                return NotFound();
+            }
+            return Ok();
         }
     }
 }

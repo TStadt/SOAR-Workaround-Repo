@@ -11,5 +11,6 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
         bool Delete(int id);
         void Commit();
         TimeSheet GetByEmployee(int id, DateTime dayOfWeek);
+        TimeSheet GetById(int id);
     }
 }
