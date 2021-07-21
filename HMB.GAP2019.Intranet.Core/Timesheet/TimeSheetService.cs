@@ -3,7 +3,10 @@ using HMB.GAP2019.Intranet.Core.Authentication;
 using HMB.GAP2019.Intranet.Core.ModelValidation;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Text;
 
 namespace HMB.GAP2019.Intranet.Core.Timesheet
@@ -58,7 +61,10 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
             
             foreach(var entry in timeSheet.Entries)
             {
-                
+                IList <ValidationResult> list  = new List<ValidationResult>();
+                _validator.TryValidateModel(entry, out list);
+                placeholder.Add(entry.Task.Name, list.Select(l => l.ToString()));
+
             }
 
 
