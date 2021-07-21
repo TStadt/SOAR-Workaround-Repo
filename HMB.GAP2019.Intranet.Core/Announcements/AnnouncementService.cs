@@ -35,7 +35,7 @@ namespace HMB.GAP2019.Intranet.Core.Announcements
 
             if (!_validator.TryValidateModel(announcement, out var validationErrors))
             {
-                _logger.LogError("Tried to add invalid announcement. {announcement}. Errors are {@validationErrors}", announcement, validationErrors);
+                _logger.LogError($"Tried to add invalid announcement. {announcement}. Errors are {@validationErrors}", announcement, validationErrors);
 
                 return false;
             }
