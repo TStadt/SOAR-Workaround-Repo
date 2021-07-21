@@ -19,6 +19,7 @@ namespace HMB.GAP2019.Intranet.Data.Authentication
             builder.Property(e => e.LastName)
                 .HasMaxLength(100);
 
+
             builder.HasData(new[]
             {
                 new Employee { Id = 1, Email = "alice.jones.admin@hmbnet.com", FirstName = "Alice", LastName = "Jones" },

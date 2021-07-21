@@ -13,27 +13,29 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
         private readonly ILogger<TimeSheetService> _logger;
         private readonly IEmployeeAuthenticationService _authenticationService;
         private readonly IModelValidationService _validator;
+        private readonly ITimeSheetRepository _repo;
 
-        public TimeSheetService(ILogger<TimeSheetService> logger, IEmployeeAuthenticationService authenticationService, IModelValidationService validationService)
+        public TimeSheetService(ITimeSheetRepository repo, ILogger<TimeSheetService> logger, IEmployeeAuthenticationService authenticationService, IModelValidationService validationService)
         {
             _logger = logger;
             _authenticationService = authenticationService;
             _validator = validationService;
+            _repo = repo;
         }
         public TimeSheet GetTimeSheet(DateTime dateInWeek)
         {
-            var placeholder = new TimeSheet();
-
+            
             var currentEmp = _authenticationService.GetLoggedInEmployee();
             if (currentEmp == null)
             {
                 _logger.LogError("No User logged in");
                 return null;
             }
+            var currentTimeSheet = _repo.GetByEmployee(currentEmp.Id, dateInWeek);
+            
 
 
-
-            return placeholder;
+            return currentTimeSheet;
         }
 
         public bool SubmitTimeSheet(TimeSheet timeSheet)

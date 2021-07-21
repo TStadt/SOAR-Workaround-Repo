@@ -9,6 +9,8 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
     public class TimeSheet
     {
 
+        public int Id { get; set; }
+
         public IEnumerable<TimeEntry> Entries { get; set; }
 
         public Employee Employee { get; set; }

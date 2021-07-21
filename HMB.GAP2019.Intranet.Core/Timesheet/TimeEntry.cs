@@ -21,5 +21,8 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
         [MaxLength(1000)]
         public string Note { get; set; }
 
+        public TimeSheet TimeSheet { get; set; }
+
+
     }
 }
