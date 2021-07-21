@@ -8,7 +8,7 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
     public class TimeEntry
     {
         [Required]
-        public Task Task { get; set; }
+        public Core.Tasks.Task Task { get; set; }
 
         public double Monday { get; set; }
         public double Tuesday { get; set; }

@@ -38,7 +38,7 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             var timeSheet = new TimeSheet();
             IList<TimeEntry> list = new List<TimeEntry>();
             timeSheet.Entries = list;
-            list.Add(new TimeEntry { Monday = 10, Tuesday = 10, Wednesday = 10, Thursday = 12, Friday = 12, Task = new Task{ Name = "Develop"} });
+            list.Add(new TimeEntry { Monday = 10, Tuesday = 10, Wednesday = 10, Thursday = 12, Friday = 12, Task = new Core.Tasks.Task{ Name = "Develop"} });
 
 
             //Act

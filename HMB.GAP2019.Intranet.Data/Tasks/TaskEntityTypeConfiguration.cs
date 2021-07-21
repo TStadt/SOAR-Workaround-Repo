@@ -1,4 +1,5 @@
-﻿using HMB.GAP2019.Intranet.Core.Timesheet;
+﻿using HMB.GAP2019.Intranet.Core.Tasks;
+using HMB.GAP2019.Intranet.Core.Timesheet;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,9 +8,9 @@ using System.Text;
 
 namespace HMB.GAP2019.Intranet.Data.Tasks
 {
-    public class TaskEntityTypeConfiguration : IEntityTypeConfiguration<Task>
+    public class TaskEntityTypeConfiguration : IEntityTypeConfiguration<Core.Tasks.Task>
     {
-        public void Configure(EntityTypeBuilder<Task> builder)
+        public void Configure(EntityTypeBuilder<Core.Tasks.Task> builder)
         {
             builder.HasKey(t => t.Id);
 
