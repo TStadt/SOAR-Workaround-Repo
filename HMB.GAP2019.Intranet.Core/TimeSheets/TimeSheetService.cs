@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace HMB.GAP2019.Intranet.Core.TimeSheets
 {
-    class TimeSheetService : ITimeSheetService
+    public class TimeSheetService : ITimeSheetService
     {
         private readonly ITimeSheetRepository _timeSheetRepository;
         private readonly IEmployeeAuthenticationService _authenticationService;
