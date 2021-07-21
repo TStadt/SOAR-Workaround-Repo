@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace HMB.GAP2019.Intranet.Core.Timesheet
+namespace HMB.GAP2019.Intranet.Core.Tasks
 {
     public class Task
     {

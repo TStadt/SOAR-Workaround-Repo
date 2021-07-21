@@ -1,3 +1,11 @@
+using HMB.GAP2019.Intranet.Core.Announcements;
+using HMB.GAP2019.Intranet.Core.Authentication;
+using HMB.GAP2019.Intranet.Core.Task;
+using HMB.GAP2019.Intranet.Core.Timesheet;
+using HMB.GAP2019.Intranet.Data.Announcements;
+using HMB.GAP2019.Intranet.Data.Authentication;
+using HMB.GAP2019.Intranet.Data.Tasks;
+using HMB.GAP2019.Intranet.Data.TimeSheets;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +29,18 @@ namespace HMB.GAP2019.Intranet.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            
+            services.AddTransient<ITimeSheetService, TimeSheetService>();
+            services.AddTransient<ITimeSheetRepository, TimeSheetRepository>();
+            services.AddTransient<ITaskService, TaskService>();
+            services.AddTransient<ITaskRepository, TaskRepository>();
+            services.AddTransient<IAnnouncementService, AnnouncementService>();
+            services.AddTransient<IAnnouncementRepository, AnnouncementRepository>();
+            //services.AddTransient<IEmployeeAuthenticationService, EmployeeAuthenticationService>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+
 
             // Normal Web API adds
 
@@ -57,6 +77,8 @@ namespace HMB.GAP2019.Intranet.API
 
             app.UseRouting();
             app.UseAuthorization();
+
+            
 
             app.UseCors(builder => builder.AllowAnyHeader()
                 .AllowAnyMethod()
