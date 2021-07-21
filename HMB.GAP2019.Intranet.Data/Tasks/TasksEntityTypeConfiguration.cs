@@ -11,7 +11,6 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id).UseSqlServerIdentityColumn();
             builder.Property(t => t.Name).IsRequired().HasMaxLength(300);
-            builder.Property(t => t.timeEntries);
             builder.Property(t => t.RequiresNote);
         }
     }

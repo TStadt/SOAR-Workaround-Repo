@@ -12,8 +12,6 @@ namespace HMB.GAP2019.Intranet.Core.Tasks
         [Required, StringLength(300)]
         public string Name { get; set; }
 
-        public List<TimeEntry.TimeEntry> timeEntries  { get; set; }
-
 
         public bool RequiresNote { get; set; } 
 

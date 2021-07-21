@@ -103,19 +103,57 @@ namespace HMB.GAP2019.Intranet.Core.TimeSheets
         public bool ValidateTimeSheet(TimeSheet timeSheet)
         {
             bool valid = true;
-            var weeklyTotal = 0;
-            foreach (Core.TimeEntry.TimeEntry t in timeSheet.timeEntries) {
-                if (t.Day >12)
+            double[] weekByHours = new double[7];
+            double weeklyTotal = 0;
+            List<Core.Tasks.TaskEntry> taskList = new List<Core.Tasks.TaskEntry>();
+            foreach (Core.TimeEntry.TimeEntry t in timeSheet.timeEntries)
+            {
+                weekByHours[0] += t.Sunday;
+                weekByHours[1] += t.Monday;
+                weekByHours[2] += t.Tuesday;
+                weekByHours[3] += t.Wednesday;
+                weekByHours[4] += t.Thursday;
+                weekByHours[5] += t.Friday;
+                weekByHours[6] += t.Saturday;
+                taskList.Add(t.Task);
+                if (t.Task.RequiresNote)
+                {
+                    if (t.Note == null || t.Note == "")
+                    {
+                        valid = false;
+                        _logger.LogError($"Task {t.Task.Name} requires a note.");
+                        return valid;
+                    }
+                }
+            }
+            foreach (double d in weekByHours)
+            {
+                weeklyTotal += d;
+                if (d > 12)
                 {
                     valid = false;
+                    _logger.LogError($"Day {d} (Sunday = 0, Monday = 1, etc.) has more than 12 hours logged.");
+                    return valid;
                 }
-                weeklyTotal += t.Day;
             }
-
-            if (weeklyTotal>50)
+            if (weeklyTotal > 50)
             {
                 valid = false;
+                _logger.LogError($"Weekly total hours greater than 50. Weekly total hours is {weeklyTotal}");
+                return valid;
             }
+            var counter = taskList.GroupBy(t => t)
+                .Where(g => g.Count() > 1)
+                .Select(y => y.Key)
+                .ToList();
+
+            foreach (var t in counter)
+            {
+                valid = false;
+                _logger.LogError($"There are multiple entries for {t.Name}");
+                return valid;
+            }
+
             return valid;
         }
 
