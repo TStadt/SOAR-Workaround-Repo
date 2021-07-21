@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace HMB.GAP2019.Intranet.Data.Contexts
 {
-    public class TasksEntityTypeConfiguration : IEntityTypeConfiguration<Task>
+    public class TasksEntityTypeConfiguration : IEntityTypeConfiguration<TaskEntry>
     {
-        public void Configure(EntityTypeBuilder<Task> builder)
+        public void Configure(EntityTypeBuilder<TaskEntry> builder)
         {
             builder.HasKey(t => t.Id);
             builder.Property(t => t.Id).UseSqlServerIdentityColumn();

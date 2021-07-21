@@ -16,7 +16,7 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
 
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
-        public DbSet<Task> Tasks{ get; set; }
+        public DbSet<TaskEntry> Tasks{ get; set; }
         public DbSet<TimeSheet> Timesheet { get; set; }
         public DbSet<HMB.GAP2019.Intranet.Core.TimeEntry.TimeEntry> TimeEntry { get; set; }
 
