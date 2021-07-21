@@ -40,7 +40,16 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
 
         public bool SubmitTimeSheet(TimeSheet timeSheet)
         {
-            throw new NotImplementedException();
+            _repo.Add(timeSheet);
+            try {
+                _repo.Commit();
+            }
+            catch(Exception e)
+            {
+                _logger.LogError("Error submiting changes: " + e);
+                return false;
+            }
+            return true;
         }
 
         public Dictionary<string, IEnumerable<string>> ValidateTimeSheet(TimeSheet timeSheet)
