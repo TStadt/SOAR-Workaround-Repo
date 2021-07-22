@@ -40,7 +40,10 @@ namespace HMB.GAP2019.Intranet.API.TimeSheets
             return Ok();
         }
 
-
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult UpdateTimeSheet([FromBody] TimeSheet timeSheet)
         {
             if (!ModelState.IsValid)
@@ -59,6 +62,10 @@ namespace HMB.GAP2019.Intranet.API.TimeSheets
             return Ok();
         }
 
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public IActionResult RemoveTimeSheet([FromBody] int id)
         {
             if (!ModelState.IsValid)
@@ -76,7 +83,11 @@ namespace HMB.GAP2019.Intranet.API.TimeSheets
             }
             return Ok();
         }
-
+        [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Route("{dateTime}")]
         public IActionResult GetTimeSheet(DateTime dateTime)
         {
             if (!ModelState.IsValid)
@@ -91,7 +102,12 @@ namespace HMB.GAP2019.Intranet.API.TimeSheets
             return Ok();
         }
 
-        public IActionResult ValidateTimeSheet(TimeSheet timeSheet)
+        [HttpPost]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Route("validate")]
+        public IActionResult ValidateTimeSheet([FromBody] TimeSheet timeSheet)
         {if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
