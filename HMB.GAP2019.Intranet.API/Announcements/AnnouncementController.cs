@@ -69,6 +69,7 @@ namespace HMB.GAP2019.Intranet.API.Announcements
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [Route("{id:int}")]
         public IActionResult Delete(int id)
         {
             if (_repository.GetById(id) == null)

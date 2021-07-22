@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Announcement } from '../interfaces/announcement';
 
 @Component({
   selector: 'app-manage-announcements',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageAnnouncementsComponent implements OnInit {
 
+    public announcements: Announcement[] = [];
   constructor() { }
 
   ngOnInit() {

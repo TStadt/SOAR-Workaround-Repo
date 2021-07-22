@@ -30,7 +30,6 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\guards\" />
-    <Folder Include="ClientApp\src\app\interfaces\" />
     <Folder Include="ClientApp\src\app\manage-announcements\" />
     <Folder Include="ClientApp\src\app\modify-announcements\" />
     <Folder Include="ClientApp\src\app\nav-menu\" />

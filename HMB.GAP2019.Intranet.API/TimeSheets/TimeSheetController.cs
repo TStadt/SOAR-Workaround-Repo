@@ -88,13 +88,13 @@ namespace HMB.GAP2019.Intranet.API.TimeSheets
         [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [Route("{dateTime}")]
-        public IActionResult GetTimeSheet(DateTime dateTime)
+        public IActionResult GetTimeSheet(DateTime week)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var result = _timeSheetService.GetTimeSheet(dateTime);
+            var result = _timeSheetService.GetTimeSheet(week);
             if(result == null)
             {
                 return NotFound();

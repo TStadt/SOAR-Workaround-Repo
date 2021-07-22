@@ -9,6 +9,7 @@ import { HomeComponent } from './home/home.component';
 import { ManageAnnouncementsComponent } from './manage-announcements/manage-announcements.component';
 import { ModifyAnnouncementsComponent } from './modify-announcements/modify-announcements.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
+import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
     HomeComponent,
     ManageAnnouncementsComponent,
     ModifyAnnouncementsComponent,
-    TimesheetComponent
+    TimesheetComponent,
+    NavMenuComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,6 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
   providers: [
   ],
   bootstrap: [AppComponent],
-  exports: [HomeComponent, ManageAnnouncementsComponent, ModifyAnnouncementsComponent, TimesheetComponent]
+  exports: [HomeComponent, ManageAnnouncementsComponent, ModifyAnnouncementsComponent, TimesheetComponent, NavMenuComponent]
 })
 export class AppModule { }
