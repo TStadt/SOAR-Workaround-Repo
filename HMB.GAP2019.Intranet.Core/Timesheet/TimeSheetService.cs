@@ -98,10 +98,28 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
             var totalHours = timeSheet.Entries.Sum(e => e.Monday + e.Tuesday + e.Wednesday + e.Thursday + e.Friday + e.Saturday + e.Sunday);
             if (totalHours > 50)
             {
-                placeholder.Add("Exceed Hours", new List<String> { "The total number of hours needs to be <= 50" });
+                _logger.LogError("Exceed Weekly Hours: The total number of hours needs to be <= 50");
+                placeholder.Add("Exceed Weekly Hours", new List<String> { "The total number of hours needs to be <= 50" });
             }
-            var totalMonday = timeSheet.Entries.Sum(e => e.Monday);
+            var totalMonday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Monday));
+            var totalTuesday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Tuesday));
+            var totalWednesday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Wednesday));
+            var totalThursday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Thursday));
+            var totalFriday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Friday));
+            var totalSaturday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Saturday));
+            var totalSunday = ValidatePerDayTime(timeSheet.Entries.Sum(e => e.Sunday));
+            if (!(totalMonday && totalTuesday && totalWednesday && totalThursday && totalFriday && totalSaturday && totalSunday))
+            {
+                _logger.LogError("A time sheet’s single day total cannot exceed 12 hours");
+                placeholder.Add("Exceed Single Day Hours", new List<String> { "A time sheet’s single day total cannot exceed 12 hours" });
+            }
+
             return placeholder;
+        }
+
+        public bool ValidatePerDayTime(double day)
+        {
+            return (day <= 12);
         }
     }
 }
