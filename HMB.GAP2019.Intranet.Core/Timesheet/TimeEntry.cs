@@ -7,6 +7,8 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
 {
     public class TimeEntry
     {
+        public int Id { get; set; }
+
         [Required]
         public Core.Tasks.Task Task { get; set; }
 
@@ -20,8 +22,6 @@ namespace HMB.GAP2019.Intranet.Core.Timesheet
 
         [MaxLength(1000)]
         public string Note { get; set; }
-
-        public TimeSheet TimeSheet { get; set; }
 
 
     }

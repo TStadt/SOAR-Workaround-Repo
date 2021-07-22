@@ -18,15 +18,10 @@ namespace HMB.GAP2019.Intranet.Data.TimeSheets
             builder.Property(e => e.Id)
                 .UseSqlServerIdentityColumn();
 
-            builder.Property(e => e.Entries);
-            builder.Property(e => e.Employee);
+            builder.HasMany(e => e.Entries);
             builder.Property(e => e.MondayOfWeek);
 
-            builder.HasMany(t => t.Entries)
-                .WithOne(t => t.TimeSheet);
-
             builder.HasOne(e => e.Employee);
-            
         }
     }
 }
