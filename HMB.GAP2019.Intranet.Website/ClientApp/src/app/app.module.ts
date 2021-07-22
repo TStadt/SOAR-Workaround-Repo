@@ -5,10 +5,18 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ModifyAnnouncementComponent } from './modify-announcement/modify-announcement.component';
+import { ManageAnnouncementsComponent } from './manage-announcements/manage-announcements.component';
+import { TimesheetComponent } from './timesheet/timesheet.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModifyAnnouncementComponent,
+    ManageAnnouncementsComponent,
+    TimesheetComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
