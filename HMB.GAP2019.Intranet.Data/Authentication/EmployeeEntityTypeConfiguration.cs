@@ -11,7 +11,7 @@ namespace HMB.GAP2019.Intranet.Data.Authentication
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                .UseSqlServerIdentityColumn();
+                .UseIdentityColumn();
             builder.Property(e => e.Email)
                 .HasMaxLength(300);
             builder.Property(e => e.FirstName)

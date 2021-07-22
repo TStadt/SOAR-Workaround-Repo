@@ -3,6 +3,9 @@ using HMB.GAP2019.Intranet.Core.Authentication;
 using HMB.GAP2019.Intranet.Core.Tasks;
 using HMB.GAP2019.Intranet.Core.TimeSheets;
 using HMB.GAP2019.Intranet.Data.Authentication;
+using HMB.GAP2019.Intranet.Core.TimeEntries;
+using HMB.GAP2019.Intranet.Data.TimeEntries;
+
 using Microsoft.EntityFrameworkCore;
 
 
@@ -17,9 +20,10 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<TaskEntry> Tasks{ get; set; }
-        public DbSet<TimeSheet> Timesheet { get; set; }
-        public DbSet<HMB.GAP2019.Intranet.Core.TimeEntry.TimeEntry> TimeEntry { get; set; }
+        public DbSet<TimeSheet> Timesheets { get; set; }
+        public DbSet<TimeEntry> TimeEntries { get; set; }
 
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new EmployeeEntityTypeConfiguration());
@@ -27,7 +31,7 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
             modelBuilder.ApplyConfiguration(new AnnouncementEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new TimeSheetsEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new TimeEntryEntityTypeConfiguration());
-
+            
             base.OnModelCreating(modelBuilder);
         }
     }

@@ -9,7 +9,7 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
         public void Configure(EntityTypeBuilder<Announcement> builder)
         {
             builder.HasKey(a => a.Id);
-            builder.Property(a => a.Id).UseSqlServerIdentityColumn();
+            builder.Property(a => a.Id).UseIdentityColumn();
             builder.Property(a => a.StartDate);
             builder.Property(a => a.EndDate);
             builder.Property(a => a.IsHighPriority);

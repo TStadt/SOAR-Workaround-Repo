@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using HMB.GAP2019.Intranet.Core.TimeEntry;
+using HMB.GAP2019.Intranet.Core.TimeEntries;
 
 namespace HMB.GAP2019.Intranet.Core.Tasks
 {

@@ -20,7 +20,7 @@ namespace HMB.GAP2019.Intranet.Data.TimeSheets
 
         public void Add(TimeSheet timeSheet)
         {
-            _context.Timesheet.Add(timeSheet);
+            _context.Timesheets.Add(timeSheet);
         }
 
         public void Commit()
@@ -30,8 +30,8 @@ namespace HMB.GAP2019.Intranet.Data.TimeSheets
 
         public bool Delete(int id)
         {
-            TimeSheet entity = _context.Timesheet.Find(id);
-            var result = _context.Timesheet.Remove(entity).State;
+            TimeSheet entity = _context.Timesheets.Find(id);
+            var result = _context.Timesheets.Remove(entity).State;
             if (result.Equals(EntityState.Deleted))
             {
                 return true;
@@ -43,17 +43,17 @@ namespace HMB.GAP2019.Intranet.Data.TimeSheets
 
         public IQueryable<TimeSheet> GetAll()
         {
-            return _context.Timesheet.AsQueryable();
+            return _context.Timesheets.AsQueryable();
         }
 
         public TimeSheet GetById(int id)
         {
-            return _context.Timesheet.Find(id);
+            return _context.Timesheets.Find(id);
         }
 
         public bool Update(TimeSheet timeSheet)
         {
-            var result = _context.Timesheet.Update(timeSheet).State;
+            var result = _context.Timesheets.Update(timeSheet).State;
             if (result.Equals(EntityState.Modified))
             {
                 return true;

@@ -8,7 +8,7 @@ using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using HMB.GAP2019.Intranet.Core.TimeEntry;
+using HMB.GAP2019.Intranet.Core.TimeEntries;
 using HMB.GAP2019.Intranet.Core.Tasks;
 
 namespace HMB.GAP2019.Intranet.Tests.TimeSheets
@@ -31,14 +31,14 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             _mockLogger = Substitute.For<ILogger<TimeSheetService>>();
             _invalidTimeSheet = new TimeSheet()
             {
-                employee = new Employee()
+                Employee = new Employee()
                 {
                     Email = "test@test.com",
                     FirstName = "John",
                     LastName = "Doe"
                 },
-                dateTime = DateTime.Now,
-                timeEntries = new List<Core.TimeEntry.TimeEntry>()
+                Week = DateTime.Now,
+                TimeEntries = new List<TimeEntry>()
                 {
                     new TimeEntry() {
                         Monday = 20,
@@ -75,14 +75,14 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             // Arrange
              var timeSheet = new TimeSheet()
              {
-                 employee = new Employee()
+                 Employee = new Employee()
                  {
                      Email = "test@test.com",
                      FirstName = "John",
                      LastName = "Doe"
                  },
-                 dateTime = DateTime.Now,
-                 timeEntries = new List<Core.TimeEntry.TimeEntry>()
+                 Week = DateTime.Now,
+                 TimeEntries = new List<TimeEntry>()
                 {
                     new TimeEntry() {
                         Monday = 20,
@@ -110,14 +110,14 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             // Arrange
             var timeSheet = new TimeSheet()
             {
-                employee = new Employee()
+                Employee = new Employee()
                 {
                     Email = "test@test.com",
                     FirstName = "John",
                     LastName = "Doe"
                 },
-                dateTime = DateTime.Now,
-                timeEntries = new List<Core.TimeEntry.TimeEntry>()
+                Week = DateTime.Now,
+                TimeEntries = new List<TimeEntry>()
                 {
                     new TimeEntry() {
                         Monday = 10,
@@ -154,16 +154,16 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
 
             var timeSheet = new TimeSheet()
             {
-                employee = new Employee()
+                Employee = new Employee()
                 {
                     Email = "test@test.com",
                     FirstName = "Jane",
                     LastName = "Doe",
                     Id = 2
                 },
-                dateTime = DateTime.Now,
+                Week = DateTime.Now,
                 Id = 2,
-                timeEntries = new List<Core.TimeEntry.TimeEntry>()
+                TimeEntries = new List<TimeEntry>()
                 {
                     new TimeEntry() {
                         Monday = 10,
@@ -202,14 +202,14 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             // Arrange
             var timeSheet = new TimeSheet()
             {
-                employee = new Employee()
+                Employee = new Employee()
                 {
                     Email = "test@test.com",
                     FirstName = "John",
                     LastName = "Doe"
                 },
-                dateTime = DateTime.Now,
-                timeEntries = new List<Core.TimeEntry.TimeEntry>()
+                Week = DateTime.Now,
+                TimeEntries = new List<TimeEntry>()
                 {
                     new TimeEntry() {
                         Monday = 2,
@@ -265,7 +265,7 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             };
             TimeSheet timeSheet = new TimeSheet()
             {
-                timeEntries = new List<TimeEntry> { timeEntry }
+                TimeEntries = new List<TimeEntry> { timeEntry }
             };
 
             // Act
@@ -281,8 +281,8 @@ namespace HMB.GAP2019.Intranet.Tests.TimeSheets
             // Arrange
              var timeSheet = new TimeSheet()
             {
-                dateTime = DateTime.Now,
-                timeEntries = new List<Core.TimeEntry.TimeEntry>()
+                Week = DateTime.Now,
+                TimeEntries = new List<TimeEntry>()
                 {
                     new TimeEntry() {
                         Monday = 2,

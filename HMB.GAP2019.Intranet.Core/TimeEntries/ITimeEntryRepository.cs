@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace HMB.GAP2019.Intranet.Core.TimeEntry
+namespace HMB.GAP2019.Intranet.Core.TimeEntries
 {
     public interface ITimeEntryRepository
     {

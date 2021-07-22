@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using HMB.GAP2019.Intranet.Core.Tasks;
 
-namespace HMB.GAP2019.Intranet.Core.TimeEntry
+namespace HMB.GAP2019.Intranet.Core.TimeEntries
 {
     public class TimeEntry
     {
-
+        
         public int Id { get; set; }
 
         public double Sunday { get; set; }
@@ -20,7 +21,7 @@ namespace HMB.GAP2019.Intranet.Core.TimeEntry
 
 
         [Required]
-        public Tasks.TaskEntry Task { get; set; }
+        public TaskEntry Task { get; set; }
 
         [StringLength(1000)]
         public string Note { get; set; }

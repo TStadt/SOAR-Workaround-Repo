@@ -1,5 +1,6 @@
 ﻿using HMB.GAP2019.Intranet.Core.Authentication;
 using HMB.GAP2019.Intranet.Core.ModelValidation;
+using HMB.GAP2019.Intranet.Core.TimeEntries;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -106,7 +107,7 @@ namespace HMB.GAP2019.Intranet.Core.TimeSheets
             double[] weekByHours = new double[7];
             double weeklyTotal = 0;
             List<Core.Tasks.TaskEntry> taskList = new List<Core.Tasks.TaskEntry>();
-            foreach (Core.TimeEntry.TimeEntry t in timeSheet.timeEntries)
+            foreach (var t in timeSheet.TimeEntries)
             {
                 weekByHours[0] += t.Sunday;
                 weekByHours[1] += t.Monday;
@@ -169,7 +170,7 @@ namespace HMB.GAP2019.Intranet.Core.TimeSheets
             TimeSheet timeSheet;
 
             timeSheet = _timeSheetRepository.GetAll()
-                .Where(t => t.dateTime.DayOfYear == (dateTime.DayOfYear)   && employee.Id == t.employee.Id).FirstOrDefault();
+                .Where(t => t.Week.DayOfYear == (dateTime.DayOfYear)   && employee.Id == t.Employee.Id).FirstOrDefault();
             return timeSheet;
         }
             

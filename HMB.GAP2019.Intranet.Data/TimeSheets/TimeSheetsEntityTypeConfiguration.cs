@@ -9,10 +9,10 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
         public void Configure(EntityTypeBuilder<TimeSheet> builder)
         {
             builder.HasKey(ts => ts.Id);
-            builder.Property(ts => ts.Id).UseSqlServerIdentityColumn();
-            builder.Property(ts => ts.dateTime).IsRequired();
-            builder.Property(ts => ts.employee).IsRequired();
-            builder.Property(ts => ts.timeEntries);
+            builder.Property(ts => ts.Id).UseIdentityColumn();
+            builder.Property(ts => ts.Week).IsRequired();
+            builder.Property(ts => ts.Employee).IsRequired();
+            builder.Property(ts => ts.TimeEntries);
         }
     }
 }
