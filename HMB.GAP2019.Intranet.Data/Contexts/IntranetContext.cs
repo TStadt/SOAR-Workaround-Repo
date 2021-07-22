@@ -19,6 +19,7 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Announcement> Announcements { get; set; }
         public DbSet<Task> Task { get; set; }
+        public DbSet<TimeEntry> TimeEntry { get; set; }
         public DbSet<TimeSheet> TimeSheet { get; set; }
 
 
@@ -26,6 +27,7 @@ namespace HMB.GAP2019.Intranet.Data.Contexts
         {
             modelBuilder.ApplyConfiguration(new EmployeeEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new AnnouncementEntityTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new TimeSheetEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new TimeSheetEntityTypeConfiguration());
             modelBuilder.ApplyConfiguration(new TaskEntityTypeConfiguration());
 

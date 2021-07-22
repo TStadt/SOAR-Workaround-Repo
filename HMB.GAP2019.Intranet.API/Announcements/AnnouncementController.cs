@@ -39,7 +39,11 @@ namespace HMB.GAP2019.Intranet.API.Announcements
             return Ok();
         }
 
-
+        [HttpPut]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult Update([FromBody] Announcement announcement)
         {
             if (!ModelState.IsValid)
@@ -61,7 +65,11 @@ namespace HMB.GAP2019.Intranet.API.Announcements
             return NoContent();
         }
 
-
+        [HttpDelete]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{id:int}")]
         public IActionResult Delete(int id)
         {
             if (_repository.GetById(id) == null)
@@ -78,7 +86,10 @@ namespace HMB.GAP2019.Intranet.API.Announcements
             return NoContent();
         }
 
-
+        [HttpGet]
+        [ProducesResponseType(typeof(Announcement), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [Route("{id:int}")]
         public IActionResult Get(int id)
         {
             var announcement = _repository.GetById(id);
@@ -91,11 +102,14 @@ namespace HMB.GAP2019.Intranet.API.Announcements
             return Ok(announcement);
         }
 
-
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Announcement>), StatusCodes.Status200OK)]
+        [Route("active")]
         public IActionResult GetActive()
             => Ok(_announcementService.GetActiveAnnouncements());
 
-
+        [HttpGet]
+        [ProducesResponseType(typeof(IEnumerable<Announcement>), StatusCodes.Status200OK)]
         public IActionResult GetAll()
             => Ok(_announcementService.GetAllAnnouncements());
     }

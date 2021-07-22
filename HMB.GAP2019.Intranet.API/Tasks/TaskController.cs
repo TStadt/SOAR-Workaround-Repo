@@ -20,7 +20,7 @@ namespace HMB.GAP2019.Intranet.API.Tasks
             _repo = repository;
         }
 
-        [HttpPost("/submit")]
+        [HttpPost("/create")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Dictionary<string, string[]>), StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
@@ -40,7 +40,7 @@ namespace HMB.GAP2019.Intranet.API.Tasks
 
 
         // GET api/<TimeSheetController>/5
-        [HttpGet("/get")]
+        [HttpGet("/getTask")]
         public IActionResult Get()
         {
             var result = _taskService.GetList();
@@ -52,7 +52,7 @@ namespace HMB.GAP2019.Intranet.API.Tasks
         }
 
         // DELETE api/<TimeSheetController>/5
-        [HttpDelete("/delete")]
+        [HttpDelete("/deleteTask")]
         public IActionResult Delete([FromQuery] int id)
         {
             var result = _taskService.DeleteTask(id);

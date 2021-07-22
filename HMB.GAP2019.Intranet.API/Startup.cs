@@ -30,7 +30,6 @@ namespace HMB.GAP2019.Intranet.API
         {
             services.AddControllers();
 
-            
             services.AddTransient<ITimeSheetService, TimeSheetService>();
             services.AddTransient<ITimeSheetRepository, TimeSheetRepository>();
             services.AddTransient<ITaskService, TaskService>();
@@ -40,14 +39,12 @@ namespace HMB.GAP2019.Intranet.API
             //services.AddTransient<IEmployeeAuthenticationService, EmployeeAuthenticationService>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 
-
-
             // Normal Web API adds
 
             services
                 .AddCors()
                 .AddApiVersioning(o => o.AssumeDefaultVersionWhenUnspecified = true);
-                
+
             services.AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
@@ -78,7 +75,7 @@ namespace HMB.GAP2019.Intranet.API
             app.UseRouting();
             app.UseAuthorization();
 
-            
+
 
             app.UseCors(builder => builder.AllowAnyHeader()
                 .AllowAnyMethod()

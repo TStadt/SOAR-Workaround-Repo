@@ -13,7 +13,7 @@ namespace HMB.GAP2019.Intranet.API.Timesheets
     [ApiController]
     [Route("api/[controller]")]
     [Produces("application/json")]
-    
+
     public class TimeSheetController : ControllerBase
     {
         private readonly ITimeSheetService _timeSheetService;
@@ -51,7 +51,7 @@ namespace HMB.GAP2019.Intranet.API.Timesheets
 
         // GET api/<TimeSheetController>/5
         [HttpGet("/get")]
-        public IActionResult Get([FromQuery] DateTime startDate) 
+        public IActionResult Get([FromQuery] DateTime startDate)
         {
             TimeSheet result = _timeSheetService.GetTimeSheet(startDate);
             if (result == null)
