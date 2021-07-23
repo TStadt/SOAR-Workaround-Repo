@@ -1,3 +1,14 @@
 <p>
   manage-announcements works!
 </p>
+
+<div *ngIf="announcements">
+
+    <article *ngFor="let announcement of announcements">
+        <div [ngClass]="announcement.isHighPriority ? 'highPriority' : ''">
+            <h1>{{announcement.title}}</h1>
+
+            <div [innerHTML]="announcement.body"></div>
+        </div>
+    </article>
+</div>
