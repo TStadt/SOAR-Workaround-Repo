@@ -1,0 +1,13 @@
+<div class="container-fluid">
+
+    <div class="row align-items-center">
+        <p *ngIf="!announcements"><em>Loading...</em></p>
+
+        <div *ngIf="announcements">
+            <article class="p-4 mb-2" *ngFor="let announcement of announcements" [ngClass]="announcement.isHighPriority ? 'isHighPriority' : ''">
+                <h1>{{ announcement.title }}</h1>
+                <div [innerHTML]="announcement.body"></div>
+            </article>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,72 @@
+<form class="container-fluid"
+      [ngClass]="{ 'darkTheme': darkTheme }">
+
+    <header class="row">
+        <h2 class="col">Modify Announcement</h2>
+    </header>
+
+    <div class="row">
+        <div class="checkbox col">
+            <label>
+                <input [(ngModel)]="announcement.isHighPriority"
+                       type="checkbox" name="highPriority" />
+                <span>High Priority?</span>
+            </label>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="form-group col">
+            <label class="control-label" for="startDate">Start Date</label>
+            <input [ngModel]="announcement.startDate | date:'y-MM-dd'"
+                   (ngModelChange)="announcement.startDate = $event"
+                   required
+                   id="startDate" type="date" name="startDate" class="form-control" />
+        </div>
+
+        <div class="form-group col">
+            <label class="control-label" for="startDate">End Date</label>
+            <input [ngModel]="announcement.endDate | date:'y-MM-dd'"
+                   (ngModelChange)="announcement.endDate = $event"
+                   required
+                   id="endDate" type="date" name="endDate" class="form-control" />
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="form-group col">
+            <label class="control-label" for="title">Title</label>
+            <input [(ngModel)]="announcement.title"
+                   required
+                   class="form-control" id="title" name="title" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col">
+            <label class="control-label" for="body">Body</label>
+            <textarea [(ngModel)]="announcement.body"
+                   required
+                      class="form-control" id="body" name="body"></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="ml-auto mr-3">
+
+            <button *ngIf="announcement.id != null"
+                    (click)="updateAnnouncement()"
+                    class="btn btn-info font-white fa fa-save" type="submit"></button>
+
+            <button *ngIf="announcement.id == null"
+                    (click)="addAnnouncement()"
+                    class="btn btn-info font-white fa fa-plus" type="submit"></button>
+
+        </div>
+
+    </div>
+
+</form>

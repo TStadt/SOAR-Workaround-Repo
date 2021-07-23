@@ -1,0 +1,113 @@
+<div *ngIf="timesheet"
+     [ngClass]="{ 'darkTheme': darkTheme }">
+
+    <h3 align="center">
+        <!-- [routerLink]="['/modify-announcement/{{ announcement.id }}']" -->
+        <a class="fa fa-chevron-left btn btn-default"
+           [routerLink]="['/timesheets', weekOffset - 1]"
+           [ngClass]="{ 'font-white': darkTheme }"></a>
+        <span>{{ formatDate(0) + ' - ' + formatDate(6) }}</span>
+        <a class="fa fa-chevron-right btn btn-default"
+           [routerLink]="['/timesheets', weekOffset + 1]"
+           [ngClass]="{ 'font-white': darkTheme }"></a>
+    </h3>
+
+    <div class="container-fluid">
+        <table class="table table-striped table-condensed table-responsive">
+
+            <thead>
+                <tr [ngClass]="{ 'darkTheme': darkTheme }">
+                    <th class="">Task</th>
+                    <th *ngFor="let day of days; let i = index">{{ formatDate(i) }}</th>
+                    <th>Total</th>
+                    <th class="col-3">Note</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody class="text-center">
+
+                <tr *ngFor="let entry of timesheet.entries; let i = index">
+
+                    <td>
+                        <span>{{ entry.assignedTask.name }}</span>
+                    </td>
+
+                    <td *ngFor="let day of days">
+                        <input [ngModel]="entry[day]"
+                               (change)="entry[day] = parseInt($event.target.value)"
+                               class="form-control" type="number" min="0" max="12" />
+                    </td>
+
+                    <td>{{ entriesSums[i] }}</td>
+
+                    <td>
+                        <textarea [(ngModel)]="entry.note"
+                                  class="form-control" type="text"></textarea>
+                    </td>
+
+                    <td>
+                        <a (click)="deleteEntry(i)"
+                           class="btn btn-danger btn-xs font-white fa fa-trash font-lg"></a>
+                    </td>
+
+                </tr>
+
+                <tr *ngIf="newEntry">
+
+                    <td>
+                        <select [(ngModel)]="newEntry.assignedTask"
+                                class="form-control" style="width: 200px;">
+                            <option *ngFor="let task of tasks"
+                                    [ngValue]="task">
+                                {{ task.name }}
+                            </option>
+                        </select>
+                    </td>
+
+                    <td *ngFor="let day of days">
+                        <input [ngModel]="newEntry[day]"
+                               (change)="newEntry[day] = parseInt($event.target.value)"
+                               class="form-control" type="number" min="0" max="12" />
+                    </td>
+
+                    <td>{{ newEntrySum }}</td>
+
+                    <td>
+                        <textarea [(ngModel)]="newEntry.note"
+                                  class="form-control" type="text" style="min-width: 100px;"></textarea>
+                    </td>
+
+                    <td>
+                        <button (click)="addEntry()"
+                                [disabled]="newEntry.assignedTask.id < 0"
+                                class="btn btn-success btn-xs fa fa-plus font-lg"></button>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+            <tfoot class="text-center">
+                <tr>
+                    <td></td>
+                    <td>{{ mondaysSum }}</td>
+                    <td>{{ tuesdaysSum }}</td>
+                    <td>{{ wednesdaysSum }}</td>
+                    <td>{{ thursdaysSum }}</td>
+                    <td>{{ fridaysSum }}</td>
+                    <td>{{ saturdaysSum }}</td>
+                    <td>{{ sundaysSum }}</td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <a (click)="save()"
+                           class="btn btn-info font-white font-lg fa fa-save"></a>
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,38 @@
+<article class="container-fluid"
+         [ngClass]="{ 'darkTheme': darkTheme }">
+
+    <div class="row align-items-center">
+        <span class="h2 mx-3">Announcements</span>
+        <a class="btn btn-success btn-xs fa fa-plus" [routerLink]="['/modify-announcement']" aria-label="add announcement"></a>
+    </div>
+
+    <table class="table table-responsive table-condensed table-striped">
+
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>High Priority</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let announcement of announcements">
+                <td>
+                    <a [routerLink]="['/modify-announcement', announcement.id]">{{ announcement.title }}</a>
+                </td>
+                <td>{{ announcement.startDate | date:'MM/dd/y' }}</td>
+                <td>{{ announcement.endDate | date:'MM/dd/y' }}</td>
+                <td>{{ announcement.isHighPriority ? 'Yes' : 'No' }}</td>
+                <td>
+                    <button (click)="deleteAnnouncement(announcement.id)"
+                            class="btn btn-danger btn-xs fa fa-trash" aria-label="remove announcement"></button>
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+</article>

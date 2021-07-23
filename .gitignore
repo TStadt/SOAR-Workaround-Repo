@@ -41,5 +41,5 @@ msbuild.wrn
 
 # NPM
 node_modules/
-/HMB.GAP2019.Intranet.Website/ClientApp/**/*.map
+/CGI.SOAR.Intranet.Website/ClientApp/**/*.map
 .cr/
